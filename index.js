@@ -58,9 +58,7 @@ module.exports = function(modules, rule) {
     try {
       majors = rule.major ? rule.major(majors, name) : majors;
     } catch (e) {
-      var err = Object.create(e);
-      err.message = err.message + ' versions: [' + mod._versions.join(', ') + ']';
-      throw err;
+      throw new Error(e.message + ' versions: [' + mod._versions.join(', ') + ']');
     }
 
 
@@ -70,9 +68,7 @@ module.exports = function(modules, rule) {
       try {
         minors = rule.minor ? rule.minor(minors, major, name) : minors;
       } catch (e) {
-        var err = Object.create(e);
-        err.message = err.message + ' versions: [' + m._versions.join(', ') + ']';
-        throw err;
+        throw new Error(e.message + ' versions: [' + m._versions.join(', ') + ']');
       }
 
       minors.forEach(function(minor) {
@@ -81,9 +77,7 @@ module.exports = function(modules, rule) {
         try {
           patchs = rule.patch ? rule.patch(patchs, minor, major, name) : patchs;
         } catch (e) {
-          var err = Object.create(e);
-          err.message = err.message + 'versions: [' + m._versions.join(', ') + ']';
-          throw err;
+          throw new Error(e.message + 'versions: [' + m._versions.join(', ') + ']');
         }
 
         patchs.forEach(function(patch) {
@@ -92,12 +86,9 @@ module.exports = function(modules, rule) {
           try {
             prereleases = rule.prerelease ? rule.prerelease(prereleases, patch, minor, major, name) : prereleases;
           } catch (e) {
-            var err = Object.create(e);
-            err.message = err.message + 'versions: [' + p._versions.join(', ') + ']';
-            throw err;
+            throw new Error(e.message + 'versions: [' + p._versions.join(', ') + ']');
           }
 
-          console.log(prereleases, p);
 
           // prerelease is optional
           prereleases.forEach(function(pre) {
