@@ -1,0 +1,26 @@
+{
+  "name": "mediation",
+  "version": "0.0.1",
+  "description": "mediation",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/.bin/mocha -R sepc test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/villadora/mediation.git"
+  },
+  "keywords": [
+    "mediation"
+  ],
+  "engines": { 
+    "node": ">=0.10.0"
+  },
+  "author": "villadora",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/villadora/mediation/issues"
+  },
+  "devDependencies": {
+  }
+}
